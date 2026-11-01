@@ -1,0 +1,621 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lux Detailing — детейлинг-студия в Махачкале</title>
+<meta name="description" content="Lux Detailing — детейлинг-студия в Махачкале. 8 лет заботимся о ваших авто: полировка, химчистка, тонировка, RGB-подсветка салона, мойка двигателя, детейлинг под ключ.">
+<link rel="icon" href="assets/logo.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#08080a;
+    --bg-2:#0f0f12;
+    --card:#131317;
+    --line:rgba(255,255,255,.09);
+    --line-2:rgba(255,255,255,.16);
+    --text:#f4f4f5;
+    --muted:#9b9ba3;
+    --dim:#62626b;
+    --chrome:linear-gradient(180deg,#ffffff 0%,#d9d9de 45%,#8e8e96 100%);
+    --radius:18px;
+    --wrap:1240px;
+    --wa:#25d366;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--text);font:400 16px/1.6 Manrope,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  img{display:block;max-width:100%}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--wrap);margin:0 auto;padding:0 24px}
+  h1,h2,h3,.display{font-family:Unbounded,Manrope,sans-serif;font-weight:700;letter-spacing:-.01em;line-height:1.08}
+  .chrome{background:var(--chrome);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+  .eyebrow{display:inline-flex;align-items:center;gap:14px;font-size:12px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+  .eyebrow::before{content:"";width:36px;height:1px;background:var(--text)}
+
+  .btn{display:inline-flex;align-items:center;gap:12px;height:54px;padding:0 28px;border-radius:999px;font-weight:700;font-size:15px;transition:transform .25s,background .25s,color .25s,box-shadow .25s;white-space:nowrap;cursor:pointer;border:0}
+  .btn svg{width:18px;height:18px;flex:none}
+  .btn-primary{background:#fff;color:#0a0a0a;box-shadow:0 10px 40px -10px rgba(255,255,255,.35)}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 16px 50px -10px rgba(255,255,255,.5)}
+  .btn-ghost{border:1px solid var(--line-2);color:var(--text);background:rgba(255,255,255,.03);backdrop-filter:blur(8px)}
+  .btn-ghost:hover{background:#fff;color:#0a0a0a}
+  .btn-sm{height:44px;padding:0 20px;font-size:14px}
+
+  /* ---------- header ---------- */
+  .header{position:fixed;inset:0 0 auto;z-index:50;transition:background .3s,border-color .3s;border-bottom:1px solid transparent}
+  .header.scrolled{background:rgba(8,8,10,.82);backdrop-filter:blur(16px);border-color:var(--line)}
+  .header .wrap{display:flex;align-items:center;justify-content:space-between;height:84px;gap:24px}
+  .logo{display:flex;align-items:center;gap:12px}
+  .logo img{height:44px;width:auto;filter:invert(1);mix-blend-mode:screen}
+  .logo-name{font-family:Unbounded,sans-serif;font-weight:700;font-size:17px;letter-spacing:.04em;color:#fff;text-transform:uppercase;white-space:nowrap}
+  .nav{display:flex;gap:34px;font-size:14px;color:var(--muted)}
+  .nav a{transition:color .2s}
+  .nav a:hover{color:var(--text)}
+  .header-right{display:flex;align-items:center;gap:22px}
+  .phone{font-weight:600;font-size:15px;white-space:nowrap}
+  .burger{display:none;width:44px;height:44px;border-radius:50%;border:1px solid var(--line-2);background:none;color:var(--text);cursor:pointer;align-items:center;justify-content:center}
+  .burger span,.burger span::before,.burger span::after{display:block;width:16px;height:1.5px;background:currentColor;position:relative;transition:.3s}
+  .burger span::before,.burger span::after{content:"";position:absolute;left:0}
+  .burger span::before{top:-5px}.burger span::after{top:5px}
+  .menu-open .burger span{background:transparent}
+  .menu-open .burger span::before{top:0;transform:rotate(45deg)}
+  .menu-open .burger span::after{top:0;transform:rotate(-45deg)}
+  .mobile-menu{position:fixed;inset:84px 0 0;background:rgba(8,8,10,.97);backdrop-filter:blur(20px);z-index:49;display:flex;flex-direction:column;padding:32px 24px;gap:6px;opacity:0;pointer-events:none;transition:opacity .3s}
+  .menu-open .mobile-menu{opacity:1;pointer-events:auto}
+  .mobile-menu a{font-family:Unbounded;font-size:26px;padding:12px 0;border-bottom:1px solid var(--line)}
+  .mobile-menu .btn{margin-top:28px;justify-content:center;font-family:Manrope;font-size:16px;border:0}
+
+  /* ---------- hero ---------- */
+  .hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;padding:140px 0 0;overflow:hidden}
+  .hero-bg{position:absolute;inset:0;background:url(assets/img/hero.jpg) 60% center/cover no-repeat;filter:grayscale(1) contrast(1.1) brightness(.9);transform:scale(1.06);animation:heroZoom 14s ease-out forwards}
+  @keyframes heroZoom{to{transform:scale(1)}}
+  .hero::after{content:"";position:absolute;inset:0;background:
+    linear-gradient(90deg,rgba(8,8,10,.96) 0%,rgba(8,8,10,.75) 38%,rgba(8,8,10,.15) 70%,rgba(8,8,10,.35) 100%),
+    linear-gradient(0deg,var(--bg) 0%,rgba(8,8,10,0) 35%)}
+  .hero .wrap{position:relative;z-index:2;width:100%}
+  .hero-content{max-width:680px;padding-bottom:64px}
+  .hero h1{font-size:clamp(40px,6.4vw,84px);margin:26px 0 24px;text-transform:uppercase;font-weight:800}
+  .hero h1 .line{display:block}
+  .hero p.lead{font-size:18px;color:#c7c7cd;max-width:520px;margin-bottom:38px}
+  .hero-cta{display:flex;flex-wrap:wrap;gap:14px}
+  .hero-badge{position:absolute;right:24px;top:150px;z-index:2;display:flex;align-items:center;gap:16px;padding:14px 22px 14px 14px;border-radius:999px;border:1px solid var(--line-2);background:rgba(10,10,12,.55);backdrop-filter:blur(12px)}
+  .hero-badge .ring{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;background:#fff;color:#0a0a0a;font-family:Unbounded;font-weight:800;font-size:22px}
+  .hero-badge small{display:block;color:var(--muted);font-size:12px;letter-spacing:.06em}
+  .hero-badge b{font-weight:700;font-size:14px}
+
+  .stats{position:relative;z-index:2;border-top:1px solid var(--line);background:rgba(8,8,10,.6);backdrop-filter:blur(10px)}
+  .stats .wrap{display:grid;grid-template-columns:repeat(4,1fr)}
+  .stat{padding:28px 0 30px;border-right:1px solid var(--line);padding-left:28px}
+  .stat:first-child{padding-left:0}
+  .stat:last-child{border-right:0}
+  .stat .num{font-family:Unbounded;font-size:clamp(28px,3vw,40px);font-weight:700;line-height:1}
+  .stat .lbl{color:var(--muted);font-size:14px;margin-top:10px}
+
+  /* ---------- sections ---------- */
+  section{position:relative}
+  .section{padding:130px 0}
+  .section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;margin-bottom:56px}
+  .section-head h2{font-size:clamp(32px,4.2vw,54px);margin-top:20px;max-width:720px}
+  .section-head p{color:var(--muted);max-width:380px}
+
+  /* services */
+  .services{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+  .svc{position:relative;border-radius:var(--radius);overflow:hidden;background:var(--card);border:1px solid var(--line);min-height:400px;display:flex;flex-direction:column;justify-content:flex-end;isolation:isolate;transition:border-color .35s,transform .35s}
+  .svc:hover{border-color:var(--line-2);transform:translateY(-4px)}
+  .svc .img{position:absolute;inset:0;z-index:-2;background-size:cover;background-position:center;filter:grayscale(1) contrast(1.1) brightness(.75);transition:transform .8s cubic-bezier(.2,.7,.2,1),filter .5s}
+  .svc:hover .img{transform:scale(1.07);filter:grayscale(.6) contrast(1.1) brightness(.85)}
+  .svc::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(8,8,10,0) 25%,rgba(8,8,10,.85) 68%,rgba(8,8,10,.98) 100%)}
+  .svc-body{padding:26px}
+  .svc .idx{position:absolute;top:22px;left:26px;font-family:Unbounded;font-size:13px;color:rgba(255,255,255,.7);letter-spacing:.08em}
+  .svc h3{font-size:19px;margin-bottom:10px}
+  .svc p{color:#b2b2ba;font-size:14px;line-height:1.55;margin-bottom:20px}
+  .svc .go{display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+  .svc .go i{width:34px;height:34px;border-radius:50%;border:1px solid var(--line-2);display:grid;place-items:center;transition:background .3s,color .3s,border-color .3s}
+  .svc:hover .go i{background:#fff;color:#000;border-color:#fff}
+  .svc .go svg{width:14px;height:14px}
+  .svc.wide{grid-column:span 2}
+
+  /* rgb card: единственное цветное фото */
+  .svc.rgb .img{filter:saturate(1.15) brightness(.8)}
+  .svc.rgb:hover .img{filter:saturate(1.3) brightness(.95)}
+
+  /* about */
+  .about{background:var(--bg-2);border-block:1px solid var(--line);overflow:hidden}
+  .about-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:80px;align-items:center}
+  .about-visual{position:relative;border-radius:24px;overflow:hidden;aspect-ratio:4/5}
+  .about-visual img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.15)}
+  .about-visual::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(8,8,10,.9),rgba(8,8,10,0) 55%)}
+  .big8{position:absolute;left:32px;bottom:22px;z-index:2;display:flex;align-items:flex-end;gap:16px}
+  .big8 .n{font-family:Unbounded;font-weight:800;font-size:clamp(130px,16vw,220px);line-height:.8}
+  .big8 .t{font-family:Unbounded;font-size:18px;line-height:1.25;padding-bottom:14px;text-transform:uppercase}
+  .about h2{font-size:clamp(30px,3.6vw,48px);margin:20px 0 22px}
+  .about .lead{color:#b9b9c0;font-size:17px;margin-bottom:44px}
+  .features{display:grid;grid-template-columns:1fr 1fr;gap:34px 30px}
+  .feat .ic{width:52px;height:52px;border-radius:14px;border:1px solid var(--line-2);display:grid;place-items:center;margin-bottom:16px;background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,0))}
+  .feat .ic svg{width:22px;height:22px}
+  .feat h4{font-size:16px;font-weight:700;margin-bottom:6px}
+  .feat p{color:var(--muted);font-size:14px;line-height:1.55}
+
+  /* steps */
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--line)}
+  .step{padding:34px 28px 10px 0;position:relative}
+  .step::before{content:"";position:absolute;top:-1px;left:0;width:0;height:1px;background:#fff;transition:width 1.2s cubic-bezier(.2,.7,.2,1)}
+  .step.in::before{width:100%}
+  .step .n{font-family:Unbounded;font-size:13px;color:var(--dim);margin-bottom:26px}
+  .step h3{font-size:20px;margin-bottom:12px}
+  .step p{color:var(--muted);font-size:15px;max-width:250px}
+
+  /* reviews */
+  .rating-box{display:flex;align-items:center;gap:22px;padding:18px 26px;border-radius:var(--radius);border:1px solid var(--line);background:var(--card)}
+  .rating-box .score{font-family:Unbounded;font-size:44px;font-weight:700;line-height:1}
+  .stars{display:flex;gap:3px;color:#fff}
+  .stars svg{width:16px;height:16px}
+  .rating-box small{color:var(--muted);font-size:13px;display:block;margin-top:6px}
+  .reviews{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:12px;scrollbar-width:none;margin-right:calc((100vw - min(100vw,var(--wrap))) / -2 - 24px);padding-right:24px}
+  .reviews::-webkit-scrollbar{display:none}
+  .review{flex:0 0 360px;scroll-snap-align:start;border-radius:var(--radius);border:1px solid var(--line);background:var(--card);padding:30px;display:flex;flex-direction:column;gap:22px;min-height:270px}
+  .review .q{font-family:Unbounded;font-size:44px;line-height:.6;color:var(--dim);height:20px}
+  .review p{font-size:16px;line-height:1.6;color:#dedee2;flex:1}
+  .review .who{display:flex;align-items:center;gap:14px;padding-top:20px;border-top:1px solid var(--line)}
+  .review .av{width:42px;height:42px;border-radius:50%;background:var(--chrome);display:grid;place-items:center;color:#111;font-weight:800;font-family:Unbounded;font-size:15px}
+  .review .who b{display:block;font-size:15px}
+  .review .who span{font-size:13px;color:var(--muted)}
+  .reviews-nav{display:flex;align-items:center;justify-content:space-between;margin-top:30px;gap:20px;flex-wrap:wrap}
+  .arrows{display:flex;gap:10px}
+  .arrows button{width:52px;height:52px;border-radius:50%;border:1px solid var(--line-2);background:none;color:var(--text);cursor:pointer;display:grid;place-items:center;transition:.25s}
+  .arrows button:hover{background:#fff;color:#000}
+  .arrows svg{width:18px;height:18px}
+  .link-arrow{display:inline-flex;align-items:center;gap:10px;font-weight:600;font-size:15px;color:var(--muted);transition:color .2s}
+  .link-arrow:hover{color:#fff}
+  .link-arrow svg{width:16px;height:16px}
+
+  /* instagram */
+  .insta{position:relative;border-radius:28px;overflow:hidden;border:1px solid var(--line);isolation:isolate}
+  .insta .bg{position:absolute;inset:0;z-index:-2;background:url(assets/img/spray.jpg) center/cover;filter:grayscale(1) brightness(.45) contrast(1.2)}
+  .insta::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(8,8,10,.92) 20%,rgba(8,8,10,.35))}
+  .insta-inner{display:grid;grid-template-columns:1.2fr 1fr;align-items:center;gap:40px;padding:80px 70px}
+  .insta h2{font-size:clamp(30px,3.8vw,50px);margin:20px 0 18px}
+  .insta p{color:#c4c4ca;max-width:460px;margin-bottom:34px}
+  .insta-handle{justify-self:end;text-align:right}
+  .insta-handle .ig{width:110px;height:110px;border-radius:30px;border:1px solid var(--line-2);display:grid;place-items:center;margin-left:auto;margin-bottom:22px;background:rgba(255,255,255,.04);backdrop-filter:blur(8px)}
+  .insta-handle .ig svg{width:52px;height:52px}
+  .insta-handle .h{font-family:Unbounded;font-size:clamp(20px,2.3vw,30px)}
+
+  /* contacts */
+  .contacts-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:18px}
+  .contact-card{border-radius:var(--radius);border:1px solid var(--line);background:var(--card);padding:40px;display:flex;flex-direction:column;gap:30px}
+  .c-item small{display:block;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);margin-bottom:8px}
+  .c-item div,.c-item a{font-size:19px;font-weight:600}
+  .c-item a:hover{text-decoration:underline;text-underline-offset:4px}
+  .socials{display:flex;gap:10px;margin-top:auto;flex-wrap:wrap}
+  .map{border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);min-height:480px;position:relative;background:var(--card)}
+  .map iframe{position:absolute;inset:0;width:100%;height:100%;border:0;filter:grayscale(1) invert(.92) contrast(.9) hue-rotate(180deg)}
+
+  /* footer */
+  footer{border-top:1px solid var(--line);padding:40px 0;margin-top:130px}
+  footer .wrap{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;color:var(--dim);font-size:14px}
+  footer .logo img{height:36px}
+
+  /* floating whatsapp */
+  .fab{position:fixed;right:22px;bottom:22px;z-index:60;width:62px;height:62px;border-radius:50%;background:var(--wa);display:grid;place-items:center;box-shadow:0 12px 34px -6px rgba(37,211,102,.55);transition:transform .25s}
+  .fab:hover{transform:scale(1.07)}
+  .fab svg{width:30px;height:30px;color:#fff}
+  .fab::before{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid var(--wa);animation:pulse 2.4s ease-out infinite}
+  @keyframes pulse{from{transform:scale(1);opacity:.8}to{transform:scale(1.6);opacity:0}}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(34px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+
+  /* ---------- responsive ---------- */
+  @media (max-width:1100px){
+    .nav{display:none}
+    .burger{display:flex}
+    .services{grid-template-columns:repeat(2,1fr)}
+    .about-grid{grid-template-columns:1fr;gap:56px}
+    .about-visual{aspect-ratio:16/11}
+    .steps{grid-template-columns:repeat(2,1fr)}
+    .contacts-grid{grid-template-columns:1fr}
+  }
+  @media (max-width:760px){
+    .wrap{padding:0 16px}
+    .header .wrap{height:72px}
+    .mobile-menu{inset:72px 0 0}
+    .logo img{height:36px}
+    .logo-name{font-size:14px}
+    .phone,.header-right .btn{display:none}
+    .hero{padding-top:110px}
+    .hero-bg{background-position:62% center}
+    .hero::after{background:linear-gradient(0deg,var(--bg) 8%,rgba(8,8,10,.82) 50%,rgba(8,8,10,.45) 100%)}
+    .hero-badge{top:96px;right:16px;padding:8px 16px 8px 8px}
+    .hero-badge .ring{width:40px;height:40px;font-size:17px}
+    .hero-content{padding-bottom:44px}
+    .hero h1{margin:20px 0 18px;font-size:min(9.2vw,40px)}
+    .hero p.lead{font-size:16px;margin-bottom:30px}
+    .hero-cta .btn{flex:1 1 100%;justify-content:center}
+    .stats .wrap{grid-template-columns:1fr 1fr}
+    .stat{padding:22px 0 22px 18px!important;border-bottom:1px solid var(--line)}
+    .stat:nth-child(odd){padding-left:0!important}
+    .stat:nth-child(2){border-right:0}
+    .stat:nth-child(n+3){border-bottom:0}
+    .section{padding:90px 0}
+    .section-head{flex-direction:column;align-items:flex-start;margin-bottom:40px}
+    .services{grid-template-columns:1fr}
+    .svc.wide{grid-column:auto}
+    .svc{min-height:340px}
+    .features{grid-template-columns:1fr}
+    .steps{grid-template-columns:1fr}
+    .step{padding-right:0}
+    .review{flex-basis:84vw;padding:24px}
+    .reviews{margin-right:-16px;padding-right:16px}
+    .insta-inner{grid-template-columns:1fr;padding:48px 26px}
+    .insta-handle{justify-self:start;text-align:left}
+    .insta-handle .ig{margin-left:0;width:84px;height:84px;border-radius:24px}
+    .insta-handle .ig svg{width:40px;height:40px}
+    .contact-card{padding:28px}
+    .map{min-height:380px}
+    .big8{left:22px}
+    footer{margin-top:90px}
+    footer .wrap{flex-direction:column;align-items:flex-start}
+  }
+</style>
+</head>
+<body>
+
+<!-- SVG icons -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></symbol>
+  <symbol id="i-wa" viewBox="0 0 24 24" fill="currentColor"><path d="M19.05 4.91A9.82 9.82 0 0 0 12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01zm-7.01 15.24c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.26 8.26 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.83c.02 4.54-3.68 8.23-8.22 8.23zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.78.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43s.17-.25.25-.41c.08-.17.04-.31-.02-.43s-.56-1.34-.76-1.84c-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18s-.22-.16-.47-.28z"/></symbol>
+  <symbol id="i-ig" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5l2.94 6.1 6.66.86-4.9 4.6 1.25 6.6L12 17.4l-5.95 3.26 1.25-6.6-4.9-4.6 6.66-.86z"/></symbol>
+  <symbol id="i-half" viewBox="0 0 24 24"><defs><linearGradient id="hg"><stop offset="50%" stop-color="currentColor"/><stop offset="50%" stop-color="currentColor" stop-opacity=".25"/></linearGradient></defs><path fill="url(#hg)" d="M12 2.5l2.94 6.1 6.66.86-4.9 4.6 1.25 6.6L12 17.4l-5.95 3.26 1.25-6.6-4.9-4.6 6.66-.86z"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.5-3.3 8.3-8 9-4.7-.7-8-4.5-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+  <symbol id="i-gem" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M6 3h12l4 6-10 12L2 9z"/><path d="M2 9h20M9 3l3 18 3-18"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></symbol>
+</svg>
+
+<header class="header" id="header">
+  <div class="wrap">
+    <a href="#top" class="logo" aria-label="Lux Detailing"><img src="assets/logo.jpg" alt=""><span class="logo-name">Lux Detailing</span></a>
+    <nav class="nav">
+      <a href="#services">Услуги</a>
+      <a href="#about">О нас</a>
+      <a href="#steps">Как работаем</a>
+      <a href="#reviews">Отзывы</a>
+      <a href="#contacts">Контакты</a>
+    </nav>
+    <div class="header-right">
+      <a class="phone" href="tel:+79882923592">+7 (988) 292-35-92</a>
+      <a class="btn btn-ghost btn-sm" data-wa href="#">Записаться <svg><use href="#i-arrow"/></svg></a>
+      <button class="burger" id="burger" aria-label="Меню"><span></span></button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#services">Услуги</a>
+  <a href="#about">О нас</a>
+  <a href="#steps">Как работаем</a>
+  <a href="#reviews">Отзывы</a>
+  <a href="#contacts">Контакты</a>
+  <a class="btn btn-primary" data-wa href="#"><svg><use href="#i-wa"/></svg> Записаться в WhatsApp</a>
+</div>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+
+    <div class="hero-badge reveal">
+      <div class="ring">8</div>
+      <div><small>ЛЕТ ОПЫТА</small><b>Махачкала</b></div>
+    </div>
+
+    <div class="wrap">
+      <div class="hero-content">
+        <span class="eyebrow reveal">Детейлинг-студия в Махачкале</span>
+        <h1 class="reveal"><span class="line">Безупречный</span><span class="line chrome">вид вашего</span><span class="line chrome">авто</span></h1>
+        <p class="lead reveal">8 лет заботимся о ваших автомобилях. Полировка, химчистка, тонировка, RGB-подсветка салона и детейлинг под ключ — с вниманием к каждой детали.</p>
+        <div class="hero-cta reveal">
+          <a class="btn btn-primary" data-wa href="#"><svg><use href="#i-wa"/></svg> Записаться</a>
+          <a class="btn btn-ghost" href="#services">Наши услуги <svg><use href="#i-arrow"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="stats">
+    <div class="wrap">
+      <div class="stat"><div class="num"><span data-count="8">0</span> лет</div><div class="lbl">заботимся о ваших авто</div></div>
+      <div class="stat"><div class="num"><span data-count="4.5" data-dec="1">0</span></div><div class="lbl">рейтинг на Яндекс.Картах</div></div>
+      <div class="stat"><div class="num"><span data-count="100">0</span>+</div><div class="lbl">оценок от клиентов</div></div>
+      <div class="stat"><div class="num">360°</div><div class="lbl">уход: кузов, салон, двигатель</div></div>
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <section class="section" id="services">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow reveal">Наши услуги</span>
+          <h2 class="reveal">Всё для идеального автомобиля</h2>
+        </div>
+        <p class="reveal">Работаем с кузовом, салоном и подкапотным пространством. Нажмите на услугу — и запишитесь в WhatsApp за минуту.</p>
+      </div>
+
+      <div class="services">
+        <a class="svc wide reveal" data-wa="Полировка кузова" href="#">
+          <div class="img" style="background-image:url(assets/img/polish.jpg)"></div>
+          <span class="idx">01</span>
+          <div class="svc-body">
+            <h3>Полировка кузова</h3>
+            <p>Убираем царапины, голограммы и помутнения. Возвращаем глубокий зеркальный блеск лакокрасочному покрытию.</p>
+            <span class="go"><i><svg><use href="#i-arrow"/></svg></i> Записаться</span>
+          </div>
+        </a>
+        <a class="svc reveal" data-wa="Химчистка салона" href="#">
+          <div class="img" style="background-image:url(assets/img/interior.jpg)"></div>
+          <span class="idx">02</span>
+          <div class="svc-body">
+            <h3>Химчистка салона</h3>
+            <p>Глубокая чистка кожи, ткани, потолка и ковров. Свежесть и чистота внутри.</p>
+            <span class="go"><i><svg><use href="#i-arrow"/></svg></i> Записаться</span>
+          </div>
+        </a>
+        <a class="svc reveal" data-wa="Тонировка" href="#">
+          <div class="img" style="background-image:url(assets/img/tint.jpg)"></div>
+          <span class="idx">03</span>
+          <div class="svc-body">
+            <h3>Тонировка</h3>
+            <p>Качественная плёнка, аккуратный монтаж без пузырей и пыли.</p>
+            <span class="go"><i><svg><use href="#i-arrow"/></svg></i> Записаться</span>
+          </div>
+        </a>
+        <a class="svc rgb reveal" data-wa="RGB-подсветка салона" href="#">
+          <div class="img" style="background-image:url(assets/img/rgb.jpg)"></div>
+          <span class="idx">04</span>
+          <div class="svc-body">
+            <h3>RGB-подсветка салона</h3>
+            <p>Контурная ambient-подсветка с выбором цвета и режимов прямо со смартфона.</p>
+            <span class="go"><i><svg><use href="#i-arrow"/></svg></i> Записаться</span>
+          </div>
+        </a>
+        <a class="svc reveal" data-wa="Мойка двигателя" href="#">
+          <div class="img" style="background-image:url(assets/img/engine.jpg)"></div>
+          <span class="idx">05</span>
+          <div class="svc-body">
+            <h3>Мойка двигателя</h3>
+            <p>Бережная очистка подкапотного пространства с защитой электроники.</p>
+            <span class="go"><i><svg><use href="#i-arrow"/></svg></i> Записаться</span>
+          </div>
+        </a>
+        <a class="svc wide reveal" data-wa="Детейлинг под ключ" href="#">
+          <div class="img" style="background-image:url(assets/img/turnkey.jpg)"></div>
+          <span class="idx">06</span>
+          <div class="svc-body">
+            <h3>Работа под ключ</h3>
+            <p>Комплексный детейлинг: от мойки и полировки до защиты кузова и химчистки салона. Вы забираете автомобиль в состоянии лучше нового.</p>
+            <span class="go"><i><svg><use href="#i-arrow"/></svg></i> Записаться</span>
+          </div>
+        </a>
+        <a class="svc wide reveal" data-wa="Антигравийная плёнка" href="#">
+          <div class="img" style="background-image:url(assets/img/ppf.jpg);background-size:135%;background-position:60% 92%"></div>
+          <span class="idx">07</span>
+          <div class="svc-body">
+            <h3>Антигравийная плёнка</h3>
+            <p>Защищаем кузов от сколов, песка и мелких царапин. Плёнка практически незаметна на автомобиле.</p>
+            <span class="go"><i><svg><use href="#i-arrow"/></svg></i> Записаться</span>
+          </div>
+        </a>
+        <a class="svc wide reveal" data-wa="Удаление вмятин без покраски" href="#">
+          <div class="img" style="background-image:url(assets/img/dent.jpg)"></div>
+          <span class="idx">08</span>
+          <div class="svc-body">
+            <h3>Удаление вмятин без покраски</h3>
+            <p>Восстанавливаем геометрию кузова, сохраняя заводское лакокрасочное покрытие.</p>
+            <span class="go"><i><svg><use href="#i-arrow"/></svg></i> Записаться</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="section about" id="about">
+    <div class="wrap about-grid">
+      <div class="about-visual reveal">
+        <img src="assets/img/spray.jpg" alt="Детейлинг автомобиля" loading="lazy">
+        <div class="big8"><span class="n chrome">8</span><span class="t">лет<br>заботимся<br>о ваших авто</span></div>
+      </div>
+      <div>
+        <span class="eyebrow reveal">Почему Lux Detailing</span>
+        <h2 class="reveal">Качество, проверенное годами</h2>
+        <p class="lead reveal">Lux Detailing — студия в Махачкале, где к автомобилю относятся как к собственному. За 8 лет через наши руки прошли сотни машин: от городских седанов до спорткаров.</p>
+        <div class="features">
+          <div class="feat reveal"><div class="ic"><svg><use href="#i-shield"/></svg></div><h4>Профессиональные материалы</h4><p>Используем проверенную химию, плёнки и оборудование.</p></div>
+          <div class="feat reveal"><div class="ic"><svg><use href="#i-user"/></svg></div><h4>Опытные мастера</h4><p>Команда, которая знает своё дело до мелочей.</p></div>
+          <div class="feat reveal"><div class="ic"><svg><use href="#i-clock"/></svg></div><h4>Работаем до результата</h4><p>Если взялись за работу — доводим её до идеала.</p></div>
+          <div class="feat reveal"><div class="ic"><svg><use href="#i-gem"/></svg></div><h4>Честный подход</h4><p>Советуем то, что действительно нужно вашему авто.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STEPS -->
+  <section class="section" id="steps">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow reveal">Как мы работаем</span>
+          <h2 class="reveal">Четыре шага до идеального блеска</h2>
+        </div>
+      </div>
+      <div class="steps">
+        <div class="step reveal"><div class="n">01</div><h3>Заявка</h3><p>Пишете нам в WhatsApp — подбираем удобное время.</p></div>
+        <div class="step reveal"><div class="n">02</div><h3>Осмотр</h3><p>Оцениваем состояние авто и предлагаем оптимальное решение.</p></div>
+        <div class="step reveal"><div class="n">03</div><h3>Работа</h3><p>Мастера выполняют работы с соблюдением технологии.</p></div>
+        <div class="step reveal"><div class="n">04</div><h3>Выдача</h3><p>Вы принимаете автомобиль и уезжаете с улыбкой.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section class="section" id="reviews" style="padding-top:0">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow reveal">Отзывы клиентов</span>
+          <h2 class="reveal">Нам доверяют</h2>
+        </div>
+        <div class="rating-box reveal">
+          <div class="score">4.5</div>
+          <div>
+            <div class="stars"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-half"/></svg></div>
+            <small>102 оценки на Яндекс.Картах</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="reviews" id="reviewsTrack">
+        <article class="review"><div class="q">“</div><p>Ребята молодцы! Не смотрят на то, что время закончилось рабочее. Если взялись за работу, остаются до часу ночи…</p><div class="who"><div class="av">М</div><div><b>Мансур Д.</b><span>Яндекс.Карты</span></div></div></article>
+        <article class="review"><div class="q">“</div><p>Один из самых профессиональных детейлинг центров. Широкий выбор авто услуг.</p><div class="who"><div class="av">F</div><div><b>fabrika-prazdnika05</b><span>Яндекс.Карты</span></div></div></article>
+        <article class="review"><div class="q">“</div><p>Очень хороший детейлинг центр, за свою стоимость делают всё отлично и качественно, советую — не пожалеете.</p><div class="who"><div class="av">М</div><div><b>Мирослав Жвакин</b><span>Яндекс.Карты</span></div></div></article>
+        <article class="review"><div class="q">“</div><p>Понравилось всё, но больше всего менеджер Саида!!! Очень приятный, вежливый, грамотный сотрудник!</p><div class="who"><div class="av">С</div><div><b>Сабина П.</b><span>Яндекс.Карты</span></div></div></article>
+        <article class="review"><div class="q">“</div><p>Все машины отправляю на детейлинг только сюда)) Всем советую. Цена — качество на уровне.</p><div class="who"><div class="av">М</div><div><b>Мусабек Ильясов</b><span>Яндекс.Карты</span></div></div></article>
+        <article class="review"><div class="q">“</div><p>Не вкрутили услугу, а дали рекомендацию, как лучше сделать. Молодцы.</p><div class="who"><div class="av">M</div><div><b>Maga Sultanmedzhidov</b><span>Яндекс.Карты</span></div></div></article>
+        <article class="review"><div class="q">“</div><p>Толковые ребята. Делают всё быстро, в срок!</p><div class="who"><div class="av">Я</div><div><b>Ян Гд</b><span>Яндекс.Карты</span></div></div></article>
+        <article class="review"><div class="q">“</div><p>Всё на высшем уровне! Дай Аллах процветания вам в дальнейшем.</p><div class="who"><div class="av">М</div><div><b>Магомед Султанмеджидов</b><span>Яндекс.Карты</span></div></div></article>
+        <article class="review"><div class="q">“</div><p>Топовый детейлинг-центр в Махачкале.</p><div class="who"><div class="av">А</div><div><b>Ахмедов М.</b><span>Яндекс.Карты</span></div></div></article>
+        <article class="review"><div class="q">“</div><p>Мастера своего дела. Адекватные цены.</p><div class="who"><div class="av">А</div><div><b>Абд маг</b><span>Яндекс.Карты</span></div></div></article>
+        <article class="review"><div class="q">“</div><p>Просто идеально делают свою работу.</p><div class="who"><div class="av">А</div><div><b>Али Омаров</b><span>Яндекс.Карты</span></div></div></article>
+      </div>
+
+      <div class="reviews-nav">
+        <a class="link-arrow" href="https://yandex.ru/maps/org/lux_detailing/206349847213/reviews/" target="_blank" rel="noopener">Все отзывы на Яндекс.Картах <svg><use href="#i-arrow"/></svg></a>
+        <div class="arrows">
+          <button id="revPrev" aria-label="Назад"><svg><use href="#i-left"/></svg></button>
+          <button id="revNext" aria-label="Вперёд"><svg><use href="#i-arrow"/></svg></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INSTAGRAM -->
+  <section id="instagram">
+    <div class="wrap">
+      <div class="insta reveal">
+        <div class="bg"></div>
+        <div class="insta-inner">
+          <div>
+            <span class="eyebrow">Мы в Instagram</span>
+            <h2>Смотрите наши работы</h2>
+            <p>До и после, свежие проекты и закулисье студии — всё в нашем Instagram. Подписывайтесь, чтобы не пропустить акции.</p>
+            <a class="btn btn-primary" href="https://www.instagram.com/lux_detailing_/" target="_blank" rel="noopener"><svg><use href="#i-ig"/></svg> Подписаться</a>
+          </div>
+          <a class="insta-handle" href="https://www.instagram.com/lux_detailing_/" target="_blank" rel="noopener">
+            <div class="ig"><svg><use href="#i-ig"/></svg></div>
+            <div class="h">@lux_detailing_</div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTS -->
+  <section class="section" id="contacts" style="padding-bottom:0">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow reveal">Контакты</span>
+          <h2 class="reveal">Ждём вас в студии</h2>
+        </div>
+        <p class="reveal">Запишитесь заранее в WhatsApp — подберём удобное время и подготовим всё к вашему приезду.</p>
+      </div>
+      <div class="contacts-grid">
+        <div class="contact-card reveal">
+          <div class="c-item"><small>Адрес</small><div>Махачкала, проспект Расула Гамзатова, 123Б</div></div>
+          <div class="c-item"><small>Телефон</small><a href="tel:+79882923592">+7 (988) 292-35-92</a></div>
+          <div class="c-item"><small>Instagram</small><a href="https://www.instagram.com/lux_detailing_/" target="_blank" rel="noopener">@lux_detailing_</a></div>
+          <div class="socials">
+            <a class="btn btn-primary" data-wa href="#"><svg><use href="#i-wa"/></svg> Записаться</a>
+            <a class="btn btn-ghost" href="https://yandex.ru/maps/org/lux_detailing/206349847213/" target="_blank" rel="noopener">Маршрут <svg><use href="#i-arrow"/></svg></a>
+          </div>
+        </div>
+        <div class="map reveal">
+          <iframe src="https://yandex.ru/map-widget/v1/?ll=47.522661%2C42.974190&z=16&oid=206349847213&ol=biz" loading="lazy" allowfullscreen title="Lux Detailing на Яндекс.Картах"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a href="#top" class="logo"><img src="assets/logo.jpg" alt="Lux Detailing"></a>
+    <span>© <span id="year"></span> Lux Detailing · Детейлинг-студия в Махачкале</span>
+    <a href="tel:+79882923592">+7 (988) 292-35-92</a>
+  </div>
+</footer>
+
+<a class="fab" data-wa href="#" aria-label="Записаться в WhatsApp"><svg><use href="#i-wa"/></svg></a>
+
+<script>
+  // WhatsApp-запись: у кнопок услуг в data-wa название услуги
+  const WA_PHONE = '79882923592';
+  document.querySelectorAll('[data-wa]').forEach(el => {
+    const svc = el.dataset.wa;
+    const text = svc
+      ? `Здравствуйте! Хочу записаться на услугу «${svc}» в Lux Detailing.`
+      : 'Здравствуйте! Хочу записаться в Lux Detailing.';
+    el.href = `https://wa.me/${WA_PHONE}?text=${encodeURIComponent(text)}`;
+    el.target = '_blank';
+    el.rel = 'noopener';
+  });
+
+  // Шапка и мобильное меню
+  const header = document.getElementById('header');
+  const onScroll = () => header.classList.toggle('scrolled', scrollY > 30);
+  addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+  document.getElementById('burger').addEventListener('click', () => document.body.classList.toggle('menu-open'));
+  document.querySelectorAll('#mobileMenu a').forEach(a => a.addEventListener('click', () => document.body.classList.remove('menu-open')));
+
+  // Появление при прокрутке + счётчики
+  const animateCount = el => {
+    const end = parseFloat(el.dataset.count), dec = +(el.dataset.dec || 0), t0 = performance.now();
+    const tick = t => {
+      const p = Math.min((t - t0) / 1400, 1), e = 1 - Math.pow(1 - p, 3);
+      el.textContent = (end * e).toFixed(dec);
+      if (p < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  };
+  const io = new IntersectionObserver(entries => entries.forEach(en => {
+    if (!en.isIntersecting) return;
+    en.target.classList.add('in');
+    if (en.target.dataset.count) animateCount(en.target);
+    io.unobserve(en.target);
+  }), { threshold: .15 });
+  document.querySelectorAll('.reveal, .step, [data-count]').forEach((el, i) => {
+    if (el.classList.contains('reveal')) el.style.transitionDelay = (i % 4) * 80 + 'ms';
+    io.observe(el);
+  });
+
+  // Карусель отзывов
+  const track = document.getElementById('reviewsTrack');
+  const step = () => track.querySelector('.review').offsetWidth + 18;
+  document.getElementById('revNext').onclick = () => track.scrollBy({ left: step(), behavior: 'smooth' });
+  document.getElementById('revPrev').onclick = () => track.scrollBy({ left: -step(), behavior: 'smooth' });
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
